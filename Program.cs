@@ -14,8 +14,16 @@ for (int i = 0; i < 3; i++)
     }
     else
     {
-        Console.WriteLine($"Not quite! Guess again (guess {i + 2}/4)");
-        input = Console.ReadLine();
+        if (int.Parse(input) > SecretNumber)
+        {
+            Console.WriteLine($"Too high! Guess again (guess {i + 2}/4)");
+            input = Console.ReadLine();
+        }
+        else
+        {
+            Console.WriteLine($"Too low! Guess again (guess {i + 2}/4)");
+            input = Console.ReadLine();
+        }
     }
 }
 
@@ -26,5 +34,5 @@ if (int.Parse(input) == SecretNumber)
 
 if (int.Parse(input) != SecretNumber)
 {
-    Console.WriteLine("Better luck next time bucko!");
+    Console.WriteLine($"It was {SecretNumber}, better luck next time bucko!");
 }
