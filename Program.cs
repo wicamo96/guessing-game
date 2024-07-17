@@ -5,17 +5,16 @@ int SecretNumber = 42;
 Console.Write("Guess a secret number: ");
 string input = Console.ReadLine();
 
-while (input == "")
+for (int i = 0; i < 3; i++)
 {
-    Console.Write("Guess a secret number: ");
-    input = Console.ReadLine();
-}
-
-if (int.Parse(input) == SecretNumber)
-{
-    Console.WriteLine("You got it!!");
-}
-else
-{
-    Console.WriteLine("Not quite!");
+    if (int.Parse(input) == SecretNumber)
+    {
+        Console.WriteLine("You got it!!");
+        break;
+    }
+    else
+    {
+        Console.WriteLine("Not quite! Guess again");
+        input = Console.ReadLine();
+    }
 }
