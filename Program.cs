@@ -3,12 +3,15 @@
 Random random = new Random();
 int SecretNumber = random.Next(1, 101);
 
-Console.Write("Guess a secret number game; Select difficulty (easy/medium/hard): ");
+Console.Write("Guess a secret number game; Select difficulty (cheater/easy/medium/hard): ");
 string input = Console.ReadLine();
 
 
 switch (input)
 {
+    case "cheater":
+        CheaterStatus();
+        break;
     case "easy":
         GuessingGame(8);
         break;
@@ -19,10 +22,12 @@ switch (input)
         GuessingGame(4);
         break;
 }
+
 void GuessingGame (int integer)
 {
     Console.Write($"Guess the secret number (guess 1/{integer}): ");
     string guess = Console.ReadLine();
+
     for (int i = 0; i < integer - 1; i++)
     {
         if (int.Parse(guess) == SecretNumber)
@@ -53,4 +58,25 @@ void GuessingGame (int integer)
     {
         Console.WriteLine($"It was {SecretNumber}, better luck next time bucko!");
     }
+}
+
+void CheaterStatus ()
+{
+    Console.Write($"Guess the secret number: ");
+    string guess = Console.ReadLine();
+
+    while (int.Parse(guess) != SecretNumber)
+    {
+        if (int.Parse(guess) > SecretNumber)
+        {
+            Console.WriteLine($"Too high! Guess again");
+            guess = Console.ReadLine();
+        }
+        else
+        {
+            Console.WriteLine($"Too low! Guess again");
+            guess = Console.ReadLine();
+        }
+    }
+    Console.WriteLine("You got it!!");
 }
