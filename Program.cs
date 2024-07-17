@@ -2,7 +2,7 @@
 
 int SecretNumber = 42;
 
-Console.Write("Guess a secret number: ");
+Console.Write("Guess a secret number (guess #1): ");
 string input = Console.ReadLine();
 
 for (int i = 0; i < 3; i++)
@@ -14,7 +14,12 @@ for (int i = 0; i < 3; i++)
     }
     else
     {
-        Console.WriteLine("Not quite! Guess again");
+        Console.WriteLine($"Not quite! Guess again (guess #{i + 2})");
         input = Console.ReadLine();
     }
+}
+
+if (int.Parse(input) == SecretNumber)
+{
+    Console.WriteLine("You got it!!");
 }
