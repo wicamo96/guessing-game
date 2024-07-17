@@ -3,36 +3,54 @@
 Random random = new Random();
 int SecretNumber = random.Next(1, 101);
 
-Console.Write("Guess a secret number (guess 1/4): ");
+Console.Write("Guess a secret number game; Select difficulty (easy/medium/hard): ");
 string input = Console.ReadLine();
 
-for (int i = 0; i < 3; i++)
+
+switch (input)
 {
-    if (int.Parse(input) == SecretNumber)
-    {
+    case "easy":
+        GuessingGame(8);
         break;
-    }
-    else
+    case "medium":
+        GuessingGame(6);
+        break;
+    case "hard":
+        GuessingGame(4);
+        break;
+}
+void GuessingGame (int integer)
+{
+    Console.Write($"Guess the secret number (guess 1/{integer}): ");
+    string guess = Console.ReadLine();
+    for (int i = 0; i < integer - 1; i++)
     {
-        if (int.Parse(input) > SecretNumber)
+        if (int.Parse(guess) == SecretNumber)
         {
-            Console.WriteLine($"Too high! Guess again (guess {i + 2}/4)");
-            input = Console.ReadLine();
+            break;
         }
         else
         {
-            Console.WriteLine($"Too low! Guess again (guess {i + 2}/4)");
-            input = Console.ReadLine();
+            if (int.Parse(guess) > SecretNumber)
+            {
+                Console.WriteLine($"Too high! Guess again (guess {i + 2}/{integer})");
+                guess = Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine($"Too low! Guess again (guess {i + 2}/{integer})");
+                guess = Console.ReadLine();
+            }
         }
     }
-}
 
-if (int.Parse(input) == SecretNumber)
-{
-    Console.WriteLine("You got it!!");
-}
+    if (int.Parse(guess) == SecretNumber)
+    {
+        Console.WriteLine("You got it!!");
+    }
 
-if (int.Parse(input) != SecretNumber)
-{
-    Console.WriteLine($"It was {SecretNumber}, better luck next time bucko!");
+    if (int.Parse(guess) != SecretNumber)
+    {
+        Console.WriteLine($"It was {SecretNumber}, better luck next time bucko!");
+    }
 }
